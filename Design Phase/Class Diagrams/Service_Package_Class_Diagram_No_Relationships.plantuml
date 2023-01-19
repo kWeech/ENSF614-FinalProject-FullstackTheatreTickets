@@ -1,0 +1,61 @@
+@startuml ServicePackage
+
+class EmailService <<service>>{
+    - mailSender : JavaMailSender
+    + sendMailMultipart(String toEmail, String subject, String message,) : void
+    + sendMail(String toEmail, String subject, String message) : void
+}
+
+class MovieService <<service>> {
+    - movieRepository : MovieRepository
+    - ticketRepository : TicketRepository
+    + getAllMovies() : List<Movie>
+    + addNewMovie(Movie movie) : void
+    + deleteMovie(Movie movie) : void
+}
+
+class PaymentService <<service>> {
+    - paymentRepository : PaymentRepository
+    - registeredUserRepository : RegisteredUserRepository
+    + addNewPayment(Payment payment) : Payment
+    + makePayment(Payment payment) : boolean
+    + updatePayment(Long userId, Payment payment) : void
+}
+
+class RegisteredUserService <<service>> {
+    - registeredUserRepository : RegisteredUserRepository
+    - movieRepository : MovieRepository
+    - paymentService : PaymentService
+    - emailService : EmailService
+    + addNewRegisteredUser(RegisteredUser registeredUser) : void
+    + loginRegisteredUser(RegisteredUser registeredUser) : RegisteredUser
+    + paySubscription(Long userId) : void
+    + sendEmailNews() : void
+    + formattedEmailNewsToString(RegisteredUser ru, List<Movie> notPreReleased, List<Movie> availableForPreOrder, List<Movie> publiclyAvailable) : String
+}
+
+class TicketService <<service>> {
+    - movieRepository : MovieRepository
+    - theatreRepository : TheatreRepository
+    - showtimeRepository : ShowtimeRepository
+    - seatRepository : SeatRepository
+    - ticketRepository : TicketRepository
+    - registeredUserRepository : RegisteredUserRepository
+    - voucherRepository : VoucherRepository
+    - emailService : EmailService
+    - paymentService : PaymentService
+    + payAndAddTicket(Long seatId, Payment payment) : void
+    + deleteTicket(Long ticketId, String emailAddress) : void
+    + registeredUserPayAndAddTicket(Long userId, Long seatId) : void
+    + formattedTicketToString(Long seatId, String emailAddress) : String
+    + formattedVoucherToString(Voucher voucher) : String
+}
+
+class VoucherService <<service>> {
+    -voucherRepository : VoucherRepository
+    + getVoucher(Long voucherId) : Voucher
+}
+
+
+
+@enduml

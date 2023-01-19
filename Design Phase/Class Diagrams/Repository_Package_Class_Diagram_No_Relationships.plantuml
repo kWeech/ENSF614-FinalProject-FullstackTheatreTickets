@@ -1,0 +1,50 @@
+@startuml RepositoryPackage
+
+interface MovieRepository <<interface>>{
+    + findMovieByTitle(String title) : Optional<Movie>
+    + findMovieBySeatId(Long seatId) : Optional<Movie>
+    + findAllNotPreReleasedMovies(LocalDate currentDate) : List<Movie>
+    + findAvailableForPreOrderMovies(LocalDate currentDate) : List<Movie>
+    + findAllPubliclyAvailableMovies(LocalDate currentDate) : List<Movie>
+}
+
+interface PaymentRepository <<interface>>{
+    + findPaymentByCardNumber(String cardNumber) : Optional<Payment>
+}
+
+interface RegisteredUserRepository <<interface>> {
+    + findRegisteredUserByUsername(String username) : Optional<RegisteredUser>
+    + findRegisteredUserById(Long userId) : Optional<RegisteredUser>
+    + findRegisteredUserByTicketId(Long ticketId) : Long
+}
+
+interface SeatRepository <<interface>> {
+    + findSeatByTicketId(Long ticketId) : Seat
+    + findSeatById(Long seatId) : Optional<Seat>
+}
+
+interface ShowtimeRepository <<interface>> {
+    + findShowtimeById(Long showtimeId) : Optional<Showtime>
+    + findShowtimeBySeatId(Long seatId) : Showtime
+    + findShowtimeByTicketId(Long ticketId) : Showtime
+}
+
+interface TheatreRepository <<interface>> {
+    + findTheatreById(Long id) : Optional<Theatre>
+    + findTheatreBySeatId(Long seatId) : Theatre
+}
+
+interface TicketRepository <<interface>> {
+    + findTicketBySeatId(Long seatId) : Ticket
+    + findAllTicketsForMovie(String movieTitle) : List<Ticket>
+}
+
+interface VoucherRepository <<interface>> {
+    + getVoucherById(Long voucherId) : Optional<Voucher>
+}
+
+
+
+
+
+@enduml

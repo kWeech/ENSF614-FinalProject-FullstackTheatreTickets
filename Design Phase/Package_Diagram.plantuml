@@ -1,0 +1,26 @@
+@startuml PackageDiagram
+
+package "Spring Boot Application" #DDDDDD{
+    package "Model" #DDDDDD {
+
+    }
+
+package "Repository" #DDDDDD{
+
+}
+
+package "Service" #DDDDDD{
+
+}
+
+package "Controller" #DDDDDD{
+
+}
+
+}
+
+Controller --> Service
+Service --> Repository
+Service ..> Model : uses
+
+@enduml

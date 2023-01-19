@@ -1,0 +1,29 @@
+@startuml DeploymantDiagram
+
+package "Movie_Theatre_Local_Server" <<Node>> #DDDDDD {
+    
+}
+
+package "Email_Server" <<Node>> #DDDDDD{
+
+}
+
+package "Database_Server" <<Node>> #DDDDDD{
+
+}
+
+package "Billing_Server" <<Node>> #DDDDDD{
+
+}
+
+package "Client_Computer" <<Node>> #DDDDDD{
+
+}
+
+Movie_Theatre_Local_Server -- Email_Server : Local Network
+Movie_Theatre_Local_Server -- Database_Server : Local Network
+Movie_Theatre_Local_Server -- Billing_Server : Local Network
+Movie_Theatre_Local_Server -- Client_Computer : Internet
+
+
+@enduml

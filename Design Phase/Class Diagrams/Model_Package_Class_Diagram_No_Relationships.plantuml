@@ -1,0 +1,66 @@
+@startuml ModelPackage
+
+class Movie <<entity>>{
+    - id: long
+    - title: String
+    - releaseDate : LocalDate
+    - preReleaseDate : LocalDate
+    - theatres: Set<Theatre>
+}
+
+class Payment <<entity>>{
+    - id: long
+    - cardHolderName : String
+    - cardNumber : String
+    - expiryDate : LocalDate
+    - cvc : int
+    - emailAddress : String
+    - address : String
+    - city : String
+    - province : String
+    - postalCode : String
+}
+
+class RegisteredUser <<entity>>{
+    - id: long
+    - username: String
+    - password: String
+    - subscriptionPaymentDate : LocalDate
+    - subscriptionEndDate : LocalDate
+    - subscriptionPayed : boolean
+}
+
+class Seat <<entity>>{
+    - id: long
+    - rowLetter: char
+    - seatNum: int
+    - isBooked: boolean
+    - price : double
+}
+
+class ShowTime <<entity>>{
+    - id: long
+    - seats: Set<Seat>
+    - time: LocalDateTime
+}
+
+class Theatre <<entity>>{
+    - id: long
+    - name : String
+    - showtimes: Set<ShowTime>
+}
+
+class Ticket <<entity>>{
+    - id: int
+    - seat: seat
+}
+
+class Voucher <<entity>>{
+    - id: long
+    - expiryDate: LocalDate
+    - voucherAmount: double
+}
+
+
+
+@enduml

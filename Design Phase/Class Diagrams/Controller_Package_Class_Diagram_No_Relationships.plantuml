@@ -1,0 +1,41 @@
+@startuml ControllerPackage
+
+class EmailController <<controller>>{
+    - emailService : EmailService
+    + sendEmail() : void
+}
+
+class MovieController <<controller>>{
+    - movieService : MovieService
+    + getMovies() : List<Movie>
+    + addMovie(Movie movie) : void
+    + deleteMovie(Movie movie) : void 
+}
+
+class PaymentController <<controller>>{
+    - paymentService : PaymentService
+    + addPayment(Payment payment) : Payment
+    + updatePayment(Long userId, Payment payment)
+}
+
+class RegisteredUserController <<controller>>{
+    - registeredUserService : RegisteredUserService
+    + registerNewRegisteredUser(RegisteredUser registeredUser) : void
+    + loginRegisteredUser(RegisteredUser registeredUser) : RegisteredUser
+    + paySubscription(Long userId) : void
+    + sendEmailNews() : void
+}
+
+class TicketController <<controller>>{
+    - ticketService : TicketService
+    + payAndAddTicket(Long seatId, Payment payment) : void
+    + registeredUserPayAndAddTicket(Long userId, Long seatId) : void
+    + deleteTicket(Long ticketId, String emailAddress) : void
+}
+
+class VoucherController <<controller>>{
+    - voucherService : VoucherService
+    + getVoucher(Long voucherId) : Voucher
+}
+
+@enduml
